@@ -1,0 +1,8 @@
+/*.iml
+/.idea
+/pong/target
+/ping/*.tmp
+/ping/target
+/.gitignore
+/pong/.idea
+/pong/*.tmp
