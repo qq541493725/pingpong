@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pong
+  template:
+    metadata:
+      labels:
+        app: pong
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: pong
+          image: pong:0.0.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pong-service
+  labels:
+    app: pong-service-label
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      nodePort: 30005
+      targetPort: 8080
+  selector:
+    app: pong-selector
