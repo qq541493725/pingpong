@@ -11,9 +11,9 @@ import reactor.core.publisher.Mono;
 @Service
 @Slf4j
 public class Hello implements Runnable {
-    @Scheduled(fixedDelay = 500L)
+    @Scheduled(fixedDelay = 1500L)
     public void hello() {
-        FileLocker.lock(this);
+        FileLocker.lock(this, () -> log.info("Request not send as being \"rate limited\"."));
     }
 
     @Override
@@ -23,6 +23,6 @@ public class Hello implements Runnable {
                          response -> Mono.error(new Exception("Request sent " + "&" + " Pong throttled it")))
                  .bodyToMono(String.class)
                  .subscribe(s -> log.info("Request sent & Pong Respond, {}", s), throwable -> log.info("{}",
-                         throwable.getMessage()), () -> log.info("Request not send as being \"rate limited\"."));
+                         throwable.getMessage()));
     }
 }

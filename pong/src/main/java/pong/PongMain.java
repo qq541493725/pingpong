@@ -8,8 +8,8 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @SpringBootApplication
 @EnableWebFlux
 @EnableScheduling
-public class Main {
+public class PongMain {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(PongMain.class, args);
     }
 }
