@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Service
 @Slf4j
 public class Hello implements Runnable {
-    @Scheduled(fixedDelay = 1500L)
+    @Scheduled(fixedDelay = 1200L)
     public void hello() {
         FileLocker.lock(this, () -> log.info("Request not send as being \"rate limited\"."));
     }
