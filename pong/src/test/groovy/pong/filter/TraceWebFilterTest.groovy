@@ -1,6 +1,7 @@
 package pong.filter
 
-
+import org.springframework.http.HttpHeaders
+import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.http.server.reactive.ServerHttpResponse
 import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.server.WebFilterChain
@@ -13,6 +14,12 @@ class TraceWebFilterTest extends Specification {
         def filter = new TraceWebFilter()
         def monoEmpty = Mono.empty()
         def exchange = Mock(ServerWebExchange)
+        def request = Mock(ServerHttpRequest)
+        exchange.getRequest() >> request
+        def headers = Mock(HttpHeaders)
+        request.getHeaders() >> headers
+        headers.get("trace") >> Arrays.asList("test")
+
         def response = Mock(ServerHttpResponse)
         response.writeWith(Mono.empty()) >> monoEmpty
         exchange.getResponse() >> response
