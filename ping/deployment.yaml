@@ -16,5 +16,5 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: ping
-          image: ping:0.0.1
+          image: ping:latest
           imagePullPolicy: Never

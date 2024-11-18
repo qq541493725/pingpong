@@ -24,7 +24,7 @@ public class MqProducer implements InitializingBean, DisposableBean {
     @Value("${ip:127.0.0.1}")
     private String ip;
 
-    @Scheduled(fixedDelay = 500L)
+    @Scheduled(fixedDelay = 5000L)
     public void hello() throws MQBrokerException, RemotingException, InterruptedException, MQClientException {
         SendResult result = producer.send(new Message("helloTopic", null, ("hello" + i).getBytes()));
         i++;

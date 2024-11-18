@@ -16,7 +16,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: pong
-          image: pong:0.0.1
+          image: pong:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
